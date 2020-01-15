@@ -4,5 +4,5 @@ function setup() {
 
 function draw() {
 	
-	rect (100,200,75,150);
+	rect (100,100,250,250);
 }
