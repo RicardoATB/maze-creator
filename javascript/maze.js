@@ -1,8 +1,17 @@
+//Global variables
+var cols, rows;
+var cellWidth = 40;
+
 function setup() {
-	createCanvas(640,360);
+	createCanvas(400,400);
 }
 
 function draw() {
-	
-	rect (100,100,250,250);
+	background(50);
+}
+
+//Constructor for the cell object
+function cell(x,y){
+	this.x = x;
+	this.y = y;
 }
