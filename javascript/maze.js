@@ -1,7 +1,7 @@
 //Global variables
-var cols, rows;
-var cellWidth = 40;
-var cellArray = [];
+var cols, rows; //number of columns and rows
+var cellWidth = 40; // height = width of each square cell
+var cellArray = []; // unidimensional array that will store all the cells
 /*****************************************************************************/
 function setup() {
 	createCanvas(400,400);
