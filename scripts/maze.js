@@ -12,7 +12,7 @@ function setup() {
 	rows = floor(height/cellWidth); // number of rows
 
 	//setting framerate
-	frameRate(20);
+	frameRate(5);
 
 	//Creating all the cell objects with a nested loop
 	for(var j = 0; j < rows; j++)
