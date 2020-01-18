@@ -11,9 +11,13 @@ function setup() {
 	cols = floor(width/cellWidth);	// number of columns
 	rows = floor(height/cellWidth); // number of rows
 
+	//setting framerate
+	frameRate(20);
+
 	//Creating all the cell objects with a nested loop
-	for(var i = 0; i < rows; i++)
-		for(var j = 0; j < cols; j++ ) {
+	for(var j = 0; j < rows; j++)
+		for(var i = 0; i < cols; i++ ) {
+
 			var cell = new Cell(i,j);
 			
 			//Storing all the cell objects in an unidimensional array
@@ -34,6 +38,30 @@ function draw() {
 
 	//if we are drawing the cell, it means that it has been visited	
 	currentCell.visited = true;
+
+	var nextCell = currentCell.checkNeighbors(); // nextCell is one of the
+												 // available neighbors
+	
+	//visiting all the neighbors
+	if (nextCell) {
+		nextCell.visited = true; //mark nextCell as visited
+		currentCell = nextCell;	 //nextCell is now the current cell
+	}
+
+
+}
+/*****************************************************************************/
+// index used to know the position of the neighbor cells in relation to
+// the current cell.
+function uniDimIndex(i,j){
+
+	//neighbor cells can not be found out of the boundaries of the canvas
+	if (i < 0 || j < 0 || i > cols -1 || j > rows -1) {
+		return -1; // return an invalid index
+	}
+	
+	return (i + (j * cols)); // "magical formula" used to know the unidimensional
+						 	 // array position when you have 2 coordinates
 }
 /*****************************************************************************/
 //Constructor for the cell object
@@ -41,8 +69,63 @@ function Cell(i,j){
 	this.i = i;
 	this.j = j;
 	this.walls = [true, true, true, true]; //(top, right, bottom, left) cell wall
-	this.visited = false; //current cell not yet visited
+	this.visited = false; //cell born with "not yet visited" status
 
+	/*-----------------------------------------------------------------------*/
+	this.checkNeighbors = function() {
+
+		var neighbors = []; // list of neighbors that hasn't being visited yet
+		
+		/*			(i,j-1)
+
+		(i-1,j)		current		(i+1,j)
+					 cell		
+					 
+					(i,j+1)*/
+
+		var topNeighbor = cellArray[uniDimIndex(i,j-1)];
+		var rightNeighbor = cellArray[uniDimIndex(i+1,j)];
+		var bottomNeighbor = cellArray[uniDimIndex(i,j+1)];
+		var leftNeighbor = cellArray[uniDimIndex(i-1,j)];
+
+		// if top neighbor is NOT invalid ("returned -1") and has
+		// not been visited, add to the "to be visited" array
+		if (topNeighbor && !topNeighbor.visited) {
+			neighbors.push(topNeighbor);
+		}
+
+		// if right neighbor is NOT invalid ("returned -1") and has
+		// not been visited, add to the "to be visited" array
+		if (rightNeighbor && !rightNeighbor.visited){
+			neighbors.push(rightNeighbor);
+		}
+
+		// if bottom neighbor is NOT invalid ("returned -1") and has
+		// not been visited, add to the "to be visited" array	
+		if (bottomNeighbor && !bottomNeighbor.visited){
+			neighbors.push(bottomNeighbor);
+		}
+
+		// if left neighbor is NOT invalid ("returned -1") and has
+		// not been visited, add to the "to be visited" array
+		if (leftNeighbor && !leftNeighbor.visited){
+			neighbors.push(leftNeighbor);
+		}
+
+
+
+
+
+		//selecting randomly a neighbor to be the next cell to be visited
+		if (neighbors.length > 0) {
+			var r = floor(random(0, neighbors.length));
+			return neighbors[r];
+		}
+		else	
+			return undefined; // this line should never run
+
+	}
+	/*-----------------------------------------------------------------------*/
 	this.showCell = function() {
 		var x = this.i*cellWidth;
 		var y = this.j*cellWidth;
@@ -83,7 +166,7 @@ function Cell(i,j){
 		fill(255,0,255,100);
 		rect(x,y,cellWidth,cellWidth);
 		}
-	
-		}
+		/*-----------------------------------------------------------------------*/
+	}
 }
 
