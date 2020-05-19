@@ -4,7 +4,6 @@ var cellWidth = 40; // height = width of each square cell
 var cellArray = []; // unidimensional array that will store all the cells
 var currentCell; // this is the cell that is current being visited
 var stack = []; // creating a stack (empty array)
-
 p5.disableFriendlyErrors = true; //disables FES to improve performance
 /*****************************************************************************/
 function setup() {
@@ -142,10 +141,6 @@ function Cell(i,j){
 		if (leftNeighbor && !leftNeighbor.visited){
 			neighbors.push(leftNeighbor);
 		}
-
-
-
-
 		
 		//selecting randomly a neighbor to be the next cell to be visited
 		if (neighbors.length > 0) {
@@ -154,14 +149,6 @@ function Cell(i,j){
 		}
 		else	
 			return undefined; // this line should never run
-		
-
-
-		/*
-		//selecting first neighbor to be the next cell to be visited
-		if (neighbors.length > 0)
-			return neighbors[0];
-		*/
 	
 	}
 	/*-----------------------------------------------------------------------*/
@@ -180,7 +167,6 @@ function Cell(i,j){
 	this.showCell = function() {
 		var x = this.i*cellWidth;
 		var y = this.j*cellWidth;
-		
 		
 		/*       (x, y)	   top	     (x + cellWidth, y)
 					------------------
@@ -215,7 +201,8 @@ function Cell(i,j){
 		// if the cell has been visited, change it's color
 		if (this.visited) {
 			noStroke();
-			fill(255,0,255,100);
+			//fill(255,0,255,100);
+			fill(70,150,255,100);
 			rect(x,y,cellWidth,cellWidth);
 		}
 		/*-----------------------------------------------------------------------*/
