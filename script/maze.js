@@ -1,3 +1,6 @@
+// MAZE CREATOR (by Ricardo Barbosa)
+// https://github.com/RicardoATB/maze-creator
+
 //Global variables
 var cols, rows; //number of columns and rows
 var cellWidth = 40; // height = width of each square cell
@@ -5,7 +8,7 @@ var cellArray = []; // unidimensional array that will store all the cells
 var currentCell; // this is the cell that is current being visited
 var stack = []; // creating a stack (empty array)
 p5.disableFriendlyErrors = true; //disables FES to improve performance
-/*****************************************************************************/
+
 function setup() {
 	createCanvas(400,400);
 
@@ -28,9 +31,8 @@ function setup() {
 
 	// defining which cell will start the maze
 	currentCell = cellArray[0]; // first cell in the arary with start the maze
-	
 }
-/*****************************************************************************/
+
 function draw() {
 	background(100);
 
@@ -44,7 +46,6 @@ function draw() {
 
 	var nextCell = currentCell.checkNeighbors(); // nextCell is one of the
 												 // available neighbors
-	
 	//visiting all the neighbors
 	if (nextCell) {
 		nextCell.visited = true; //mark nextCell as visited
@@ -54,11 +55,9 @@ function draw() {
 	} else if (stack.length > 0) { // stack is not empty
 		currentCell = stack.pop();
 	}
-
 }
-/*****************************************************************************/
-function removeWalls (a, b) {
 
+function removeWalls (a, b) {
 	var x = a.i - b.i;
 
 	if ( x === 1) {
@@ -78,9 +77,8 @@ function removeWalls (a, b) {
 		a.walls[2] = false; // bottom wall removed
 		b.walls[0] = false; // top wall removed
 	}
-
 }
-/*****************************************************************************/
+
 // index used to know the position of the neighbor cells in relation to
 // the current cell.
 function uniDimIndex(i,j){
@@ -93,7 +91,7 @@ function uniDimIndex(i,j){
 	return (i + (j * cols)); // "magical formula" used to know the unidimensional
 						 	 // array position when you have 2 coordinates
 }
-/*****************************************************************************/
+
 //Constructor for the cell object
 function Cell(i,j){
 	this.i = i;
@@ -101,9 +99,8 @@ function Cell(i,j){
 	this.walls = [true, true, true, true]; //(top, right, bottom, left) cell wall
 	this.visited = false; //cell born with "not yet visited" status
 
-	/*-----------------------------------------------------------------------*/
-	this.checkNeighbors = function() {
 
+	this.checkNeighbors = function() {
 		var neighbors = []; // list of neighbors that hasn't being visited yet
 		
 		/*			(i,j-1)
@@ -149,21 +146,17 @@ function Cell(i,j){
 		}
 		else	
 			return undefined; // this line should never run
-	
 	}
-	/*-----------------------------------------------------------------------*/
+
 	// Draws another rectangle to show which is the current cell
 	this.highlight = function() {
-
 		var x = this.i*cellWidth;
 		var y = this.j*cellWidth;
 		noStroke();
 		fill(0, 0, 255, 100);
 		rect(x, y, cellWidth, cellWidth);
-
 	}
 
-	/*-----------------------------------------------------------------------*/
 	this.showCell = function() {
 		var x = this.i*cellWidth;
 		var y = this.j*cellWidth;
@@ -205,7 +198,5 @@ function Cell(i,j){
 			fill(70,150,255,100);
 			rect(x,y,cellWidth,cellWidth);
 		}
-		/*-----------------------------------------------------------------------*/
 	}
 }
-
