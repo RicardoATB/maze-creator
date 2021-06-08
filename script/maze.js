@@ -24,11 +24,10 @@ function setup() {
 		for(var i = 0; i < cols; i++ ) {
 
 			var cell = new Cell(i,j);
-			
+		
 			//Storing all the cell objects in an unidimensional array
 			cellArray.push(cell);
 		}
-
 	// defining which cell will start the maze
 	currentCell = cellArray[0]; // first cell in the arary with start the maze
 }
