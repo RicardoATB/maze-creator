@@ -1,0 +1,1 @@
+Check the script running live here: https://ricardoatb.github.io/maze-creator/
