@@ -1,5 +1,5 @@
 // MAZE CREATOR (by Ricardo Barbosa)
-// https://github.com/RicardoATB/maze-creator
+// https://github.com/RicardoATB/maze-generator
 
 //Global variables
 var cols, rows; //number of columns and rows
