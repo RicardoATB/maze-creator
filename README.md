@@ -1,4 +1,4 @@
-**Description**: Maze generator
+**Description**: Maze generator using JavaScript
 
 **Motivation**: Study and implement *Depth-First Search algorithm*
 
