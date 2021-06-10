@@ -1,5 +1,6 @@
-// MAZE CREATOR (by Ricardo Barbosa)
-// https://github.com/RicardoATB/maze-generator
+// Description: Maze generator
+// Author: Ricardo Augusto Teixeira Barbosa
+// Source code: https://github.com/RicardoATB/maze-generator
 
 //Global variables
 var cols, rows; //number of columns and rows
