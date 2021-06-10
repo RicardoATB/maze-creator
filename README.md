@@ -4,4 +4,4 @@
 
 Check the project running live here: https://ricardoatb.github.io/maze-generator/
 
-<img src="https://github.com/RicardoATB/maze-generator/blob/master/output/output.gif" width="30%" height="30%" />
+<img src="https://github.com/RicardoATB/maze-generator/blob/master/output/output.gif" width="40%" height="40%" />
